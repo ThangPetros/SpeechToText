@@ -4,12 +4,16 @@ class SpeechRecognitionAPI{
         this.speechApi = new SpeechToText();
         this.output = options.output ? options.output : document.createElement("div");
         this.speechApi.continuous = true;
-        this.speechApi.interimResult = false;
+        this.speechApi.interimResult = true;
+        // this.speechApi.interimResult = true;
+        // this.speechApi.SpeechRecognitionResult.isFinal = flase;
         this.speechApi.onresult = (event) => {
-            console.log(event);
+            // console.log(event);
             var resultIndex = event.resultIndex;
+            console.log("---Index", resultIndex)
             var transcript = event.results[resultIndex][0].transcript;
-            this.output.textContent = transcript;
+            console.log("---Transcript", transcript)
+            this.output.textContent += transcript;
         }
     }
     init(){
